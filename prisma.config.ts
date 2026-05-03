@@ -3,12 +3,14 @@
 import "dotenv/config";
 import { defineConfig } from "prisma/config";
 
+import { normalizeDatabaseUrl } from "./src/lib/database-url";
+
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
     path: "prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    url: normalizeDatabaseUrl(process.env["DATABASE_URL"]),
   },
 });
