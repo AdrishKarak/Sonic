@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "SKIP_ENV_VALIDATION=1 next build",
+    "build": "next build",
     "start": "next start",
     "preinstall": "prisma generate",
     "lint": "eslint"
@@ -33,6 +33,7 @@
     "react-hook-form": "^7.73.1",
     "react-resizable-panels": "^4.10.0",
     "recharts": "^3.8.0",
+    "simplex-noise": "^4.0.3",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",
     "vaul": "^1.1.2",
