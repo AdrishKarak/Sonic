@@ -40,11 +40,11 @@ export const WavyBackground = ({
   const getSpeed = useCallback(() => {
     switch (speed) {
       case "slow":
-        return 0.001;
+        return 0.0008;
       case "fast":
-        return 0.005;
+        return 0.003;
       default:
-        return 0.001;
+        return 0.0008;
     }
   }, [speed]);
 
@@ -94,8 +94,8 @@ export const WavyBackground = ({
         ctx.strokeStyle = waveColors[i % waveColors.length];
         ctx.globalAlpha = waveOpacity;
         for (let x = 0; x < w; x += 5) {
-          const y = noise(x / 800, 0.3 * i, nt) * 100;
-          ctx.lineTo(x, y + (waveYOffset ?? h / 2));
+          const y = noise(x / 800, 0.15 * i, nt) * 100;
+          ctx.lineTo(x, y + (waveYOffset ?? h * 0.28));
         }
         ctx.stroke();
         ctx.closePath();
