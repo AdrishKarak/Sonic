@@ -150,7 +150,7 @@ export function DashboardSidebar() {
                             height={24}
                             className="rounded-sm"
                         />
-                        <span className="group-data-[collapsible=icon]:hidden font-semibold text-lg tracking-tighter text-foreground">
+                        <span className="group-data-[collapsible=icon]:hidden font-semibold text-xl tracking-tighter text-foreground">
                             Resonance
                         </span>
                         <SidebarTrigger className="ml-auto lg:hidden" />
