@@ -1,12 +1,8 @@
-import { z } from 'zod';
-import { baseProcedure, createTRPCRouter } from '../init';
+import { createTRPCRouter } from '../init';
+import { voicesRouter } from './voices';
 
 export const appRouter = createTRPCRouter({
-    status: baseProcedure.query(() => {
-        return {
-            status: "ok"
-        };
-    }),
+    voices: voicesRouter
 });
 
 export type AppRouter = typeof appRouter;
