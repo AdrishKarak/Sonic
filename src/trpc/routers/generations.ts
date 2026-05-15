@@ -61,7 +61,7 @@ export const generationsRouter = createTRPCRouter({
                 //const customerState = await polar.customers.getStateExternal({externalId: ctx.orgId});
                 //const hasActiveSubscription =(customerState.activeSubscriptions ?? []).length > 0;
                 // Placeholder until Polar integration is fully implemented
-                const hasActiveSubscription = false;
+                const hasActiveSubscription = true;
                 if (!hasActiveSubscription) {
                     throw new TRPCError({
                         code: "FORBIDDEN",
