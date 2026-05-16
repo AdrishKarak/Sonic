@@ -1,16 +1,23 @@
-"use client"
+"use client";
 
-
+import { Coins } from "lucide-react";
 import { useStore } from "@tanstack/react-form";
-import { Coins } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Textarea } from "@/components/ui/textarea"
-import { COST_PER_UNIT, TEXT_MAX_LENGTH } from "../data/constants"
-import { ttsFormOptions } from "./text-to-speech-form";
-import { GenerateButton } from "./generate-button";
+
+import { SettingsDrawer } from "./settings-drawer";
+import { HistoryDrawer } from "./history-drawer";
+import { VoiceSelectorButton } from "./voice-selector-button";
+
+import { Badge } from "@/components/ui/badge";
+import { Textarea } from "@/components/ui/textarea";
 import { useTypedAppFormContext } from "@/hooks/use-app-form";
 
-
+import {
+    COST_PER_UNIT,
+    TEXT_MAX_LENGTH
+} from "@/features/text-to-speech/data/constants";
+import { ttsFormOptions } from "./text-to-speech-form";
+import { GenerateButton } from "./generate-button";
+import { PromptSuggestions } from "./prompt-suggestions";
 
 export function TextInputPanel() {
     const form = useTypedAppFormContext(ttsFormOptions);
@@ -18,8 +25,10 @@ export function TextInputPanel() {
     const text = useStore(form.store, (s) => s.values.text);
     const isSubmitting = useStore(form.store, (s) => s.isSubmitting);
     const isValid = useStore(form.store, (s) => s.isValid);
+
     return (
         <div className="flex h-full min-h-0 flex-col flex-1">
+            {/* Text input area */}
             <div className="relative min-h-0 flex-1">
                 <form.Field name="text">
                     {(field) => (
@@ -40,6 +49,12 @@ export function TextInputPanel() {
             <div className="shrink-0 p-4 lg:p-6">
                 {/* Mobile layout */}
                 <div className="flex flex-col gap-3 lg:hidden">
+                    <div className="flex items-center gap-2">
+                        <SettingsDrawer>
+                            <VoiceSelectorButton />
+                        </SettingsDrawer>
+                        <HistoryDrawer />
+                    </div>
                     <GenerateButton
                         className="w-full"
                         disabled={isSubmitting}
@@ -72,17 +87,16 @@ export function TextInputPanel() {
                                 isSubmitting={isSubmitting}
                                 onSubmit={() => form.handleSubmit()}
                             />
-
                         </div>
                     </div>
                 ) : (
                     <div className="hidden lg:block">
-                        {/* <PromptSuggestions
-              onSelect={(prompt) => form.setFieldValue("text", prompt)}
-            />*/}
+                        <PromptSuggestions
+                            onSelect={(prompt) => form.setFieldValue("text", prompt)}
+                        />
                     </div>
                 )}
             </div>
         </div>
     );
-}
+};
