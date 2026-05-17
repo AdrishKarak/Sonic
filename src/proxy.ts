@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 
 
 const isPublicRoute = createRouteMatcher([
+    "/landing",
     "/sign-in(.*)",
     "/sign-up(.*)",
     "/api/webhooks/clerk-webhook",
@@ -16,13 +17,14 @@ const isOrgSelectionRoute = createRouteMatcher([
 export default clerkMiddleware(async (auth, req) => {
     const { userId, orgId } = await auth();
 
-
-
     if (isPublicRoute(req)) {
         return NextResponse.next()
     }
 
     if (!userId) {
+        if (req.nextUrl.pathname === "/" || req.nextUrl.pathname === "") {
+            return NextResponse.redirect(new URL("/landing", req.url));
+        }
         await auth.protect();
     }
 

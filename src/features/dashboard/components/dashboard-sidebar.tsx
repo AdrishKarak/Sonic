@@ -139,7 +139,8 @@ export function DashboardSidebar() {
         <>
             <Sidebar collapsible="icon">
                 <SidebarHeader className="flex flex-col gap-4 pt-4">
-                    <div
+                    <Link
+                        href="/landing"
                         className="flex items-center gap-2 pl-1 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:pl-0">
                         <Image
                             src="/logo.svg"
@@ -152,7 +153,7 @@ export function DashboardSidebar() {
                             Resonance
                         </span>
                         <SidebarTrigger className="ml-auto lg:hidden" />
-                    </div>
+                    </Link>
                     <SidebarMenu>
                         <SidebarMenuItem>
                             <OrganizationSwitcher
