@@ -10,13 +10,16 @@ import {
     InputGroupAddon,
 } from "@/components/ui/input-group";
 import { voicesSearchParams } from "@/features/voices/lib/params";
-import { VoiceCreateDialog } from "./voice-create-dialog";
 
 
 export function VoicesToolbar() {
     const [query, setQuery] = useQueryState(
         "query",
         voicesSearchParams.query
+    );
+    const [, setCloning] = useQueryState(
+        "cloning",
+        voicesSearchParams.cloning
     );
     const [localQuery, setLocalQuery] = useState(query);
 
@@ -52,20 +55,16 @@ export function VoicesToolbar() {
                         />
                     </InputGroup>
                     <div className="ml-auto hidden lg:block">
-                        <VoiceCreateDialog>
-                            <Button size="sm">
-                                <Sparkles />
-                                Custom voice
-                            </Button>
-                        </VoiceCreateDialog>
+                        <Button size="sm" onClick={() => setCloning(true)}>
+                            <Sparkles />
+                            Custom voice
+                        </Button>
                     </div>
                     <div className="lg:hidden">
-                        <VoiceCreateDialog>
-                            <Button size="sm" className="w-full">
-                                <Sparkles />
-                                Custom voice
-                            </Button>
-                        </VoiceCreateDialog>
+                        <Button size="sm" className="w-full" onClick={() => setCloning(true)}>
+                            <Sparkles />
+                            Custom voice
+                        </Button>
                     </div>
                 </div>
             </div>

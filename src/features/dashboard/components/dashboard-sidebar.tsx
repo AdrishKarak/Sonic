@@ -98,7 +98,6 @@ function NavSection({ label, items, pathname }: NavSectionProps) {
 export function DashboardSidebar() {
     const pathname = usePathname();
     const clerk = useClerk();
-    const [voiceDialogOpen, setVoiceDialogOpen] = useState(false);
 
     const mainMenuItems: MenuItem[] = [
         {
@@ -118,8 +117,8 @@ export function DashboardSidebar() {
         },
         {
             title: "Voice cloning",
+            url: "/voices?cloning=true",
             icon: Volume2,
-            onClick: () => setVoiceDialogOpen(true),
         },
     ];
 
@@ -138,7 +137,6 @@ export function DashboardSidebar() {
 
     return (
         <>
-            {/* <VoiceCreateDialog open={voiceDialogOpen} onOpenChange={setVoiceDialogOpen} /> */}
             <Sidebar collapsible="icon">
                 <SidebarHeader className="flex flex-col gap-4 pt-4">
                     <div

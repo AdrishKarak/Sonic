@@ -7,6 +7,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { VoicesList } from "../components/voices-list";
 import { voicesSearchParams } from "../lib/params";
 import { VoicesToolbar } from "../components/voices-toolbar";
+import { VoiceCreateDialog } from "../components/voice-create-dialog";
 
 
 function VoicesContent() {
@@ -15,12 +16,17 @@ function VoicesContent() {
         "query",
         voicesSearchParams.query
     );
+    const [cloning, setCloning] = useQueryState(
+        "cloning",
+        voicesSearchParams.cloning
+    );
     const { data } = useSuspenseQuery(
         trpc.voices.getAll.queryOptions({ query })
     );
 
     return (
         <>
+            <VoiceCreateDialog open={cloning} onOpenChange={setCloning} />
             <VoicesList title="Team Voices" voices={data.custom} />
             <VoicesList title="Built-in Voices" voices={data.system} />
         </>
