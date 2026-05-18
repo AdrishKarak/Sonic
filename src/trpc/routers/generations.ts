@@ -205,9 +205,9 @@ export const generationsRouter = createTRPCRouter({
                 });
             }
 
-            // Ingest usage event to Polar (fire-and-forget, don't block response)
-            polar.events
-                .ingest({
+            // Ingest usage event to Polar
+            try {
+                await polar.events.ingest({
                     events: [
                         {
                             name: env.POLAR_METER_TTS_GENERATION,
@@ -216,10 +216,11 @@ export const generationsRouter = createTRPCRouter({
                             timestamp: new Date(),
                         },
                     ],
-                })
-                .catch(() => {
-                    // Silently fail - don't break the user experience for metering errors
                 });
+            } catch (err) {
+                Sentry.captureException(err);
+                // Silently fail - don't break the user experience for metering errors
+            }
 
             return {
                 id: generationId,

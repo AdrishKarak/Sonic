@@ -48,9 +48,17 @@ export const billingRouter = createTRPCRouter({
             // Sum up estimated costs from all meters across active subscriptions
             let estimatedCostCents = 0;
             for (const sub of customerState.activeSubscriptions ?? []) {
-                for (const meter of sub.meters ?? []) {
-                    estimatedCostCents += meter.amount ?? 0;
+                // Check for meters on the subscription
+                if (sub.meters) {
+                    for (const meter of sub.meters) {
+                        estimatedCostCents += meter.amount ?? 0;
+                    }
                 }
+                
+                // If there are no meters, or they all returned 0, we might want to check
+                // if there's a total amount on the subscription itself for usage-based items.
+                // In some Polar versions, usage-based costs are aggregated in sub.amount
+                // if it's the only item or if it's already calculated.
             }
 
             return {

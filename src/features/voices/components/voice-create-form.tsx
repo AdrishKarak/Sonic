@@ -326,6 +326,9 @@ export function VoiceCreateForm({
                 queryClient.invalidateQueries({
                     queryKey: trpc.voices.getAll.queryKey(),
                 });
+                queryClient.invalidateQueries({
+                    queryKey: trpc.billing.getStatus.queryKey(),
+                });
                 form.reset();
             } catch (error) {
                 const message =
