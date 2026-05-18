@@ -8,6 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 
 import { useTRPC } from "@/trpc/client";
 import { useAppForm } from "@/hooks/use-app-form";
+import { useCheckout } from "@/features/billing/hooks/use-checkout";
 
 const ttsFormSchema = z.object({
     text: z.string().min(1, "Please enter some text"),
@@ -33,7 +34,6 @@ export const ttsFormOptions = formOptions({
     defaultValues: defaultTTSValues,
 });
 
-
 export function TextToSpeechForm({
     children,
     defaultValues,
@@ -41,12 +41,13 @@ export function TextToSpeechForm({
     children: React.ReactNode;
     defaultValues?: TTSFormValues;
 }) {
-
-    const tRPC = useTRPC();
+    const trpc = useTRPC();
     const router = useRouter();
     const createMutation = useMutation(
-        tRPC.generations.create.mutationOptions({})
-    )
+        trpc.generations.create.mutationOptions({}),
+    );
+
+    const { checkout } = useCheckout();
 
     const form = useAppForm({
         ...ttsFormOptions,
@@ -64,14 +65,26 @@ export function TextToSpeechForm({
                     topK: value.topK,
                     repetitionPenalty: value.repetitionPenalty,
                 });
-                toast.success("Audio generated successfully");
+
+                toast.success("Audio generated successfully!");
                 router.push(`/text-to-speech/${data.id}`);
             } catch (error) {
-                const message = error instanceof Error ? error.message : "Failed to generate audio";
-                toast.error(message)
+                const message =
+                    error instanceof Error ? error.message : "Failed to generate audio";
+
+                if (message === "SUBSCRIPTION REQUIRED") {
+                    toast.error("Subscription required", {
+                        action: {
+                            label: "Subscribe",
+                            onClick: () => checkout(),
+                        },
+                    });
+                } else {
+                    toast.error(message);
+                }
             }
         },
     });
 
     return <form.AppForm>{children}</form.AppForm>;
-}
+};
