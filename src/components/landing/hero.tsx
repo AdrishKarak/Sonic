@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
+import { Play, ArrowRight } from "lucide-react";
 import HeroTitle from "./hero-title";
 import Waveform from "./waveform";
 
@@ -87,24 +88,26 @@ export default function Hero() {
         >
           <button
             onClick={handleStart}
-            className="text-white rounded-xl px-7 py-3.5 text-[15px] font-medium
+            className="group text-white rounded-xl px-7 py-3.5 text-[15px] font-medium
                        hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(10,10,10,0.25)]
-                       transition-all"
+                       transition-all flex items-center gap-2"
             style={{ background: "var(--ink)" }}
           >
-            Start for free →
+            <span>Start for free</span>
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </button>
           <button
             onClick={handleDemo}
-            className="bg-white/70 border rounded-xl px-7 py-3.5
+            className="group bg-white/70 border rounded-xl px-7 py-3.5
                        text-[15px] font-medium backdrop-blur-sm
-                       hover:bg-white/90 hover:-translate-y-0.5 transition-all"
+                       hover:bg-white/90 hover:-translate-y-0.5 transition-all flex items-center gap-2"
             style={{
               color: "var(--ink)",
               borderColor: "rgba(10, 10, 10, 0.15)",
             }}
           >
-            ▶ Hear a demo
+            <Play size={16} className="fill-current opacity-70" />
+            <span>Hear a demo</span>
           </button>
         </div>
 
