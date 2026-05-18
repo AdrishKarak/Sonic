@@ -1,0 +1,145 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
+import Image from "next/image";
+import HeroTitle from "./hero-title";
+import Waveform from "./waveform";
+
+export default function Hero() {
+  const router = useRouter();
+  const { isSignedIn } = useUser();
+
+  const handleStart = () => {
+    router.push(isSignedIn ? "/" : "/sign-up");
+  };
+
+  const handleDemo = () => {
+    router.push(isSignedIn ? "/voices" : "/sign-in");
+  };
+
+  return (
+    <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 sm:px-12 pt-36 pb-16 overflow-hidden">
+      {/* Illustrated Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <Image
+          src="/hero-bg.jpg"
+          alt=""
+          fill
+          priority
+          className="object-cover object-bottom"
+          sizes="100vw"
+        />
+        {/* White overlay for text readability */}
+        <div className="absolute inset-0 bg-white/20" />
+        {/* Bottom fade into page */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-48"
+          style={{
+            background: "linear-gradient(to top, var(--sky-canvas), transparent)",
+          }}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center">
+        {/* Badge */}
+        <div
+          className="glass-pill inline-flex items-center gap-2 px-4 py-1.5 mb-8"
+          style={{ animation: "fadeSlideDown 0.7s ease both" }}
+        >
+          <span
+            className="w-2 h-2 rounded-full animate-pulse"
+            style={{ background: "var(--positive)" }}
+          />
+          <span
+            className="text-xs font-medium"
+            style={{
+              fontFamily: "var(--font-body-family)",
+              color: "var(--ink-muted)",
+            }}
+          >
+            Now available — start for free
+          </span>
+        </div>
+
+        {/* Title */}
+        <HeroTitle />
+
+        {/* Subtitle */}
+        <p
+          className="text-lg max-w-[500px] leading-relaxed mb-10"
+          style={{
+            fontFamily: "var(--font-body-family)",
+            fontWeight: 300,
+            color: "var(--ink-muted)",
+            animation: "fadeSlideUp 0.8s 0.6s ease both",
+          }}
+        >
+          Studio-quality text-to-speech for creators, developers, and teams. No
+          audio engineer required.
+        </p>
+
+        {/* CTA Row */}
+        <div
+          className="flex flex-wrap gap-3.5 justify-center"
+          style={{ animation: "fadeSlideUp 0.8s 0.75s ease both" }}
+        >
+          <button
+            onClick={handleStart}
+            className="text-white rounded-xl px-7 py-3.5 text-[15px] font-medium
+                       hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(10,10,10,0.25)]
+                       transition-all"
+            style={{ background: "var(--ink)" }}
+          >
+            Start for free →
+          </button>
+          <button
+            onClick={handleDemo}
+            className="bg-white/70 border rounded-xl px-7 py-3.5
+                       text-[15px] font-medium backdrop-blur-sm
+                       hover:bg-white/90 hover:-translate-y-0.5 transition-all"
+            style={{
+              color: "var(--ink)",
+              borderColor: "rgba(10, 10, 10, 0.15)",
+            }}
+          >
+            ▶ Hear a demo
+          </button>
+        </div>
+
+        {/* Waveform */}
+        <div className="mt-8">
+          <Waveform />
+        </div>
+
+        {/* Dashboard Screenshot */}
+        <div className="relative w-full max-w-[960px] mx-auto mt-14">
+          {/* Glow */}
+          <div
+            className="absolute inset-5 -bottom-5 rounded-2xl pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse, rgba(56,189,248,0.20) 0%, transparent 70%)",
+            }}
+          />
+          {/* Frame */}
+          <div
+            className="hero-screenshot-frame relative z-10 rounded-2xl overflow-hidden
+                       border shadow-[0_40px_100px_rgba(56,189,248,0.14),0_8px_32px_rgba(10,10,10,0.08)]"
+            style={{ borderColor: "var(--glass-border)" }}
+          >
+            <Image
+              src="/Dashboard.jpg"
+              alt="Resonance Dashboard"
+              width={960}
+              height={600}
+              priority
+              className="w-full h-auto block"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

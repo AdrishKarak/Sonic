@@ -1,39 +1,28 @@
-import Link from "next/link";
-import { UserButton, Show } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
+import type { Metadata } from "next";
+import Navbar from "@/components/landing/navbar";
+import Hero from "@/components/landing/hero";
+import Marquee from "@/components/landing/marquee";
+import TtsSection from "@/components/landing/tts-section";
+import BentoGrid from "@/components/landing/bento-grid";
+import Pricing from "@/components/landing/pricing";
+import Footer from "@/components/landing/footer";
+
+export const metadata: Metadata = {
+  title: "Resonance — AI Text-to-Speech & Voice Cloning",
+  description:
+    "Studio-quality text-to-speech for creators, developers, and teams. Turn any text into natural speech in seconds.",
+};
 
 export default function LandingPage() {
-    return (
-        <div className="flex flex-col items-center justify-center min-h-screen gap-4">
-            <h1 className="text-4xl font-bold mb-8">Welcome to Resonance</h1>
-            
-            <div className="flex gap-4">
-                <Show when="signed-in">
-                    <Button asChild size="lg">
-                        <Link href="/">Start</Link>
-                    </Button>
-                </Show>
-                <Show when="signed-out">
-                    <Button asChild size="lg">
-                        <Link href="/sign-up">Start</Link>
-                    </Button>
-                </Show>
-            </div>
-
-            <div className="flex gap-4 mt-4">
-                <Show when="signed-out">
-                    <Button asChild variant="outline">
-                        <Link href="/sign-in">Sign In</Link>
-                    </Button>
-                    <Button asChild variant="outline">
-                        <Link href="/sign-up">Sign Up</Link>
-                    </Button>
-                </Show>
-                
-                <Show when="signed-in">
-                    <UserButton />
-                </Show>
-            </div>
-        </div>
-    );
+  return (
+    <div style={{ background: "var(--sky-canvas)" }}>
+      <Navbar />
+      <Hero />
+      <Marquee />
+      <TtsSection />
+      <BentoGrid />
+      <Pricing />
+      <Footer />
+    </div>
+  );
 }
