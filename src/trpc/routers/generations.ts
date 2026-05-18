@@ -212,13 +212,14 @@ export const generationsRouter = createTRPCRouter({
                         {
                             name: env.POLAR_METER_TTS_GENERATION,
                             externalCustomerId: ctx.orgId,
-                            metadata: { [env.POLAR_METER_TTS_PROPERTY]: input.text.length },
+                            metadata: { "characters": input.text.length },
                             timestamp: new Date(),
                         },
                     ],
                 });
             } catch (err) {
                 Sentry.captureException(err);
+                console.error("Failed to ingest TTS usage event to Polar:", err);
                 // Silently fail - don't break the user experience for metering errors
             }
 
