@@ -1,75 +1,76 @@
-# Resonance
+# Resonance 🎙️
 
-A text-to-speech (TTS) service that processes audio generation requests through Modal and stores audio files in S3.
+Resonance is a high-performance, AI-powered text-to-speech platform featuring voice cloning and synthesis, built with a serverless-first architecture.
 
-## Tech Stack
+## ✨ Features
 
-- **Next.js 16** with App Router and TypeScript
-- **Clerk** for authentication
-- **Prisma** with PostgreSQL for data persistence
-- **Modal** for TTS processing
-- **S3** for audio file storage
-- **Tailwind CSS** and **shadcn/ui** for styling
+- **Voice Cloning:** Create custom voices from short audio samples.
+- **Turbo TTS:** Fast, high-quality audio generation using GPU-accelerated Modal functions.
+- **Organization Support:** Multi-tenant workspace management via Clerk.
+- **Usage-Based Billing:** Seamless subscription management and metering with Polar.sh.
+- **Modern UI:** Polished interface built with React 19 and Tailwind CSS 4.
 
-## Getting Started
+## 🛠️ Tech Stack
 
+- **Framework:** [Next.js 16](https://nextjs.org/) (App Router, Server Components)
+- **UI:** [React 19](https://react.dev/), [Tailwind CSS 4](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/)
+- **API:** [tRPC](https://trpc.io/) (Typesafe end-to-end API)
+- **Database:** [PostgreSQL](https://www.postgresql.org/) + [Prisma](https://www.prisma.io/)
+- **Auth:** [Clerk](https://clerk.com/) (Session & Organization Management)
+- **Storage:** [Cloudflare R2](https://www.cloudflare.com/developer-platform/r2/) (S3-compatible)
+- **TTS Engine:** [Modal](https://modal.com/) (Python, FastAPI, GPU Inference)
+- **Billing:** [Polar.sh](https://polar.sh/) (Subscription & Metering)
+
+## 🚀 Getting Started
+
+### 1. Prerequisites
+- Node.js (v20+)
+- Python (for local Modal development)
+- A PostgreSQL database
+
+### 2. Installation
 ```bash
-# Install dependencies
 npm install
+```
 
-# Start development server
+### 3. Environment Setup
+Copy `.env.example` to `.env` (if available) or ensure the following are set:
+- `DATABASE_URL`
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` & `CLERK_SECRET_KEY`
+- `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET_NAME`
+- `POLAR_ACCESS_TOKEN`, `POLAR_SERVER`
+- `CHATTERBOX_API_URL`, `CHATTERBOX_API_KEY`
+
+### 4. Database Initialization
+```bash
+npx prisma generate
+npx prisma migrate dev
+```
+
+### 5. Running the App
+```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+## 📁 Project Structure
 
-## Database Setup
+Resonance uses a feature-based organization to keep the codebase scalable:
 
-```bash
-# Generate Prisma client
-npx prisma generate
+- `src/features/`: Core business logic (voices, text-to-speech, billing).
+- `src/app/`: Next.js App Router and API routes.
+- `src/trpc/`: Typesafe API definitions and routers.
+- `src/lib/`: Shared client/server utilities (DB, R2, Polar).
+- `src/components/ui/`: Low-level shadcn/ui components.
+- `chatterbox_tts.py`: The Modal-deployed Python TTS engine.
 
-# Run migrations
-npx prisma migrate dev
+## 📖 Documentation
 
-# Seed database (optional)
-npx prisma db seed
-```
+For more detailed information, see:
+- [ARCHITECTURE.md](./ARCHITECTURE.md) - Deep dive into the system design and data flow.
+- [CONVENTIONS.md](./CONVENTIONS.md) - Coding standards and best practices.
+- [SECURITY.md](./SECURITY.md) - Security policies and reporting.
+- [DESIGN.md](./design.md) - UI/UX philosophy and design system.
 
-## Environment Variables
+## 🛡️ Security
 
-Configure the following environment variables:
-
-- `DATABASE_URL` - PostgreSQL connection string
-- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` - Clerk public key
-- `CLERK_SECRET_KEY` - Clerk secret key
-- Additional variables for S3 and Modal integration
-
-## Available Scripts
-
-```bash
-npm run dev      # Start development server
-npm run build    # Build for production
-npm run start    # Start production server
-npm run lint     # Run ESLint
-```
-
-## Project Structure
-
-```
-src/
-├── app/              # Next.js App Router pages and layouts
-├── components/       # Shared UI components (shadcn/ui)
-├── lib/              # Shared utilities
-├── hooks/            # Custom React hooks
-├── generated/        # Prisma client generated files
-└── db/               # Database schema and migrations
-
-prisma/
-├── schema.prisma     # Database schema
-└── migrations/       # Database migrations
-```
-
-## Data Flow
-
-User → Next.js API → Modal (TTS) → S3 → Response URL
+Security is a top priority. Please refer to our [Security Policy](./SECURITY.md) for details on our practices and how to report vulnerabilities.
