@@ -227,21 +227,21 @@ export default function Pricing() {
 
         .price-card {
           border-radius: 6px;
-          border: 1px solid #e2e8f0;
+          border: 1px solid #bae6fd;
           background: #ffffff;
           position: relative;
           overflow: hidden;
           transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
         }
         .price-card:hover {
-          border-color: #bae6fd;
+          border-color: #7dd3fc;
           box-shadow: 0 8px 32px rgba(14,165,233,0.13);
           transform: translateY(-2px);
         }
 
         .rate-row {
           border-radius: 6px;
-          border: 1px solid #e2e8f0;
+          border: 1px solid #bae6fd;
           background: #ffffff;
           padding: 20px 22px;
           display: flex;
@@ -250,7 +250,7 @@ export default function Pricing() {
           transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
         }
         .rate-row:hover {
-          border-color: #bae6fd;
+          border-color: #7dd3fc;
           box-shadow: 0 6px 24px rgba(14,165,233,0.1);
           transform: translateY(-2px);
         }

@@ -220,21 +220,21 @@ export default function BentoGrid() {
         }
         .bento-card-light {
           background: #ffffff;
-          border: 1px solid #e2e8f0;
+          border: 1px solid #bae6fd;
           box-shadow: 0 2px 12px rgba(14, 165, 233, 0.06);
         }
         .bento-card-light:hover {
           box-shadow: 0 8px 32px rgba(14, 165, 233, 0.12);
-          border-color: #bae6fd;
+          border-color: #7dd3fc;
         }
         .bento-card-dark {
           background: #09090b;
-          border: 1px solid rgba(255,255,255,0.08);
+          border: 1px solid rgba(56, 189, 248, 0.2);
           box-shadow: 0 2px 12px rgba(0,0,0,0.3);
         }
         .bento-card-dark:hover {
           box-shadow: 0 8px 32px rgba(14, 165, 233, 0.1);
-          border-color: rgba(56, 189, 248, 0.2);
+          border-color: rgba(56, 189, 248, 0.5);
         }
         .icon-badge {
           display: inline-flex;
@@ -305,7 +305,7 @@ export default function BentoGrid() {
         }
         .flip-front {
           background: #09090b;
-          border: 1px solid rgba(255,255,255,0.08);
+          border: 1px solid rgba(56, 189, 248, 0.2);
         }
         .flip-back {
           transform: rotateY(180deg);
@@ -313,7 +313,7 @@ export default function BentoGrid() {
           flex-direction: column;
           justify-content: space-between;
           background: #020617;
-          border: 1px solid rgba(56, 189, 248, 0.2);
+          border: 1px solid rgba(56, 189, 248, 0.4);
         }
         .code-block {
           font-family: 'JetBrains Mono', 'Fira Code', monospace;
