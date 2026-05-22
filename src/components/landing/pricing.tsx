@@ -29,6 +29,176 @@ const usageRates = [
   },
 ];
 
+// ─── SVG Illustrations ───────────────────────────────────────────────────────
+
+/** Sound waves radiating from a central dot — "TTS" */
+function TTSAnimation() {
+  return (
+    <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+      {/* Core dot */}
+      <circle cx="36" cy="36" r="5" fill="#38bdf8">
+        <animate attributeName="r" values="5;7;5" dur="1.4s" repeatCount="indefinite" />
+      </circle>
+
+      {/* Wave ring 1 */}
+      <circle cx="36" cy="36" r="12" stroke="#38bdf8" strokeWidth="1.8" opacity="0">
+        <animate attributeName="r" values="12;22;12" dur="1.8s" repeatCount="indefinite" begin="0s" />
+        <animate attributeName="opacity" values="0.8;0;0.8" dur="1.8s" repeatCount="indefinite" begin="0s" />
+      </circle>
+      {/* Wave ring 2 */}
+      <circle cx="36" cy="36" r="12" stroke="#0ea5e9" strokeWidth="1.4" opacity="0">
+        <animate attributeName="r" values="12;28;12" dur="1.8s" repeatCount="indefinite" begin="0.4s" />
+        <animate attributeName="opacity" values="0.6;0;0.6" dur="1.8s" repeatCount="indefinite" begin="0.4s" />
+      </circle>
+      {/* Wave ring 3 */}
+      <circle cx="36" cy="36" r="12" stroke="#7dd3fc" strokeWidth="1" opacity="0">
+        <animate attributeName="r" values="12;34;12" dur="1.8s" repeatCount="indefinite" begin="0.8s" />
+        <animate attributeName="opacity" values="0.4;0;0.4" dur="1.8s" repeatCount="indefinite" begin="0.8s" />
+      </circle>
+
+      {/* Waveform bars — left */}
+      <rect x="6" y="29" width="3" height="14" rx="1.5" fill="#38bdf8">
+        <animate attributeName="height" values="14;6;14" dur="0.9s" repeatCount="indefinite" begin="0s" />
+        <animate attributeName="y" values="29;33;29" dur="0.9s" repeatCount="indefinite" begin="0s" />
+      </rect>
+      <rect x="12" y="24" width="3" height="24" rx="1.5" fill="#0ea5e9">
+        <animate attributeName="height" values="24;10;24" dur="0.7s" repeatCount="indefinite" begin="0.15s" />
+        <animate attributeName="y" values="24;31;24" dur="0.7s" repeatCount="indefinite" begin="0.15s" />
+      </rect>
+      <rect x="18" y="27" width="3" height="18" rx="1.5" fill="#38bdf8">
+        <animate attributeName="height" values="18;8;18" dur="1.1s" repeatCount="indefinite" begin="0.3s" />
+        <animate attributeName="y" values="27;32;27" dur="1.1s" repeatCount="indefinite" begin="0.3s" />
+      </rect>
+
+      {/* Waveform bars — right */}
+      <rect x="51" y="27" width="3" height="18" rx="1.5" fill="#38bdf8">
+        <animate attributeName="height" values="18;8;18" dur="1s" repeatCount="indefinite" begin="0.2s" />
+        <animate attributeName="y" values="27;32;27" dur="1s" repeatCount="indefinite" begin="0.2s" />
+      </rect>
+      <rect x="57" y="24" width="3" height="24" rx="1.5" fill="#0ea5e9">
+        <animate attributeName="height" values="24;12;24" dur="0.75s" repeatCount="indefinite" begin="0.05s" />
+        <animate attributeName="y" values="24;30;24" dur="0.75s" repeatCount="indefinite" begin="0.05s" />
+      </rect>
+      <rect x="63" y="29" width="3" height="14" rx="1.5" fill="#38bdf8">
+        <animate attributeName="height" values="14;6;14" dur="0.95s" repeatCount="indefinite" begin="0.4s" />
+        <animate attributeName="y" values="29;33;29" dur="0.95s" repeatCount="indefinite" begin="0.4s" />
+      </rect>
+    </svg>
+  );
+}
+
+/** DNA double-helix — "Voice Cloning" */
+function CloningAnimation() {
+  return (
+    <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+      {/* Left strand */}
+      <path
+        d="M22 6 Q36 18 22 30 Q8 42 22 54 Q36 66 22 78"
+        stroke="#38bdf8" strokeWidth="2" fill="none" strokeLinecap="round"
+      >
+        <animate attributeName="d"
+          values="M22 6 Q36 18 22 30 Q8 42 22 54 Q36 66 22 78;
+                  M22 6 Q8 18 22 30 Q36 42 22 54 Q8 66 22 78;
+                  M22 6 Q36 18 22 30 Q8 42 22 54 Q36 66 22 78"
+          dur="2s" repeatCount="indefinite" />
+      </path>
+      {/* Right strand */}
+      <path
+        d="M50 6 Q36 18 50 30 Q64 42 50 54 Q36 66 50 78"
+        stroke="#0ea5e9" strokeWidth="2" fill="none" strokeLinecap="round"
+      >
+        <animate attributeName="d"
+          values="M50 6 Q36 18 50 30 Q64 42 50 54 Q36 66 50 78;
+                  M50 6 Q64 18 50 30 Q36 42 50 54 Q64 66 50 78;
+                  M50 6 Q36 18 50 30 Q64 42 50 54 Q36 66 50 78"
+          dur="2s" repeatCount="indefinite" />
+      </path>
+      {/* Cross-links */}
+      {[18, 30, 42, 54].map((y, i) => (
+        <line key={y} x1="22" y1={y} x2="50" y2={y} stroke="#7dd3fc" strokeWidth="1.4" strokeLinecap="round">
+          <animate attributeName="opacity" values="0.2;1;0.2" dur="2s" repeatCount="indefinite" begin={`${i * 0.5}s`} />
+        </line>
+      ))}
+      {/* Pulsing nodes */}
+      {[18, 30, 42, 54].map((y, i) => (
+        <circle key={`n${y}`} cx="36" cy={y} r="2.5" fill="#38bdf8">
+          <animate attributeName="r" values="2.5;4;2.5" dur="2s" repeatCount="indefinite" begin={`${i * 0.5}s`} />
+          <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin={`${i * 0.5}s`} />
+        </circle>
+      ))}
+    </svg>
+  );
+}
+
+/** Zap orbiting a ring — "Free Exploration" */
+function ExplorationAnimation() {
+  return (
+    <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+      {/* Orbit ring */}
+      <circle cx="36" cy="36" r="24" stroke="#38bdf8" strokeWidth="1.2" strokeDasharray="6 4" opacity="0.5">
+        <animateTransform attributeName="transform" type="rotate" from="0 36 36" to="360 36 36" dur="8s" repeatCount="indefinite" />
+      </circle>
+
+      {/* Inner pulsing ring */}
+      <circle cx="36" cy="36" r="14" stroke="#0ea5e9" strokeWidth="1" strokeDasharray="3 5" opacity="0.4">
+        <animateTransform attributeName="transform" type="rotate" from="360 36 36" to="0 36 36" dur="5s" repeatCount="indefinite" />
+      </circle>
+
+      {/* Central bolt */}
+      <polygon points="36,20 28,38 35,38 30,52 44,32 37,32 42,20" fill="#38bdf8">
+        <animate attributeName="opacity" values="1;0.4;1" dur="1.2s" repeatCount="indefinite" />
+        <animateTransform attributeName="transform" type="scale" additive="sum"
+          values="1 1;1.05 1.05;1 1" dur="1.2s" repeatCount="indefinite"
+          calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" />
+      </polygon>
+
+      {/* Orbiting dot */}
+      <circle cx="60" cy="36" r="4" fill="#7dd3fc">
+        <animateTransform attributeName="transform" type="rotate" from="0 36 36" to="360 36 36" dur="3s" repeatCount="indefinite" />
+        <animate attributeName="r" values="4;5.5;4" dur="3s" repeatCount="indefinite" />
+      </circle>
+
+      {/* Spark particles */}
+      {[0, 90, 180, 270].map((angle, i) => (
+        <circle key={i} cx={36 + 24 * Math.cos((angle * Math.PI) / 180)} cy={36 + 24 * Math.sin((angle * Math.PI) / 180)} r="2" fill="#38bdf8">
+          <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin={`${i * 0.5}s`} />
+        </circle>
+      ))}
+    </svg>
+  );
+}
+
+/** Big hero SVG — "Free to explore" card background */
+function HeroBgSVG() {
+  return (
+    <svg
+      width="340" height="200"
+      viewBox="0 0 340 200"
+      fill="none"
+      style={{ position: "absolute", bottom: 0, right: 0, opacity: 0.07, pointerEvents: "none" }}
+    >
+      {/* Concentric arcs */}
+      {[40, 70, 100, 130, 160].map((r, i) => (
+        <circle key={r} cx="310" cy="170" r={r} stroke="#0ea5e9" strokeWidth="1.2">
+          <animate attributeName="r" values={`${r};${r + 8};${r}`} dur={`${3 + i * 0.4}s`} repeatCount="indefinite" begin={`${i * 0.3}s`} />
+          <animate attributeName="opacity" values="1;0.4;1" dur={`${3 + i * 0.4}s`} repeatCount="indefinite" begin={`${i * 0.3}s`} />
+        </circle>
+      ))}
+      {/* Grid lines */}
+      {[0, 1, 2, 3].map(i => (
+        <line key={i} x1={i * 85} y1="0" x2={i * 85} y2="200" stroke="#38bdf8" strokeWidth="0.5" strokeDasharray="4 6" />
+      ))}
+      {[0, 1, 2].map(i => (
+        <line key={i} x1="0" y1={i * 100} x2="340" y2={i * 100} stroke="#38bdf8" strokeWidth="0.5" strokeDasharray="4 6" />
+      ))}
+    </svg>
+  );
+}
+
+// ─── Component ───────────────────────────────────────────────────────────────
+
+const rateIcons = [TTSAnimation, CloningAnimation, ExplorationAnimation];
+
 export default function Pricing() {
   const router = useRouter();
   const { isSignedIn } = useUser();
@@ -36,258 +206,244 @@ export default function Pricing() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("visible");
-        });
-      },
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add("visible");
+      }),
       { threshold: 0.12 }
     );
-
-    sectionRef.current
-      ?.querySelectorAll(".reveal")
-      .forEach((el) => observer.observe(el));
-
+    sectionRef.current?.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section
-      id="pricing"
-      ref={sectionRef}
-      className="flex flex-col items-center gap-5 py-24 px-6 sm:px-12 relative overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg, var(--sky-canvas), rgba(186,224,255,0.15))",
-      }}
-    >
-      {/* Decorative background glow */}
-      <div
-        className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full pointer-events-none opacity-20"
-        style={{
-          background: "radial-gradient(circle, var(--sky-400) 0%, transparent 70%)",
-          filter: "blur(60px)",
-          zIndex: 0,
-        }}
-      />
+    <>
+      <style>{`
+        .reveal {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
-      <div className="relative z-10 flex flex-col items-center w-full max-w-[960px]">
+        .price-card {
+          border-radius: 6px;
+          border: 1px solid #e2e8f0;
+          background: #ffffff;
+          position: relative;
+          overflow: hidden;
+          transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+        }
+        .price-card:hover {
+          border-color: #bae6fd;
+          box-shadow: 0 8px 32px rgba(14,165,233,0.13);
+          transform: translateY(-2px);
+        }
+
+        .rate-row {
+          border-radius: 6px;
+          border: 1px solid #e2e8f0;
+          background: #ffffff;
+          padding: 20px 22px;
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+        }
+        .rate-row:hover {
+          border-color: #bae6fd;
+          box-shadow: 0 6px 24px rgba(14,165,233,0.1);
+          transform: translateY(-2px);
+        }
+
+        .accent-bar {
+          position: absolute;
+          top: 0; left: 28px;
+          width: 36px; height: 2px;
+          background: #0ea5e9;
+        }
+
+        .cta-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: #0f172a;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          padding: 14px 32px;
+          font-size: 15px;
+          font-weight: 600;
+          letter-spacing: -0.01em;
+          cursor: pointer;
+          transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .cta-btn:hover {
+          background: #0ea5e9;
+          box-shadow: 0 8px 28px rgba(14,165,233,0.35);
+          transform: translateY(-1px);
+        }
+        .cta-btn svg { transition: transform 0.2s ease; }
+        .cta-btn:hover svg { transform: translateX(3px); }
+      `}</style>
+
+      <section
+        id="pricing"
+        ref={sectionRef}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 0,
+          padding: "96px 24px",
+          background: "#f8fafc",
+          fontFamily: "system-ui, -apple-system, sans-serif",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
         {/* Header */}
         <span
-          className="reveal font-medium text-xs tracking-[0.15em] uppercase mb-4"
-          style={{
-            fontFamily: "var(--font-body-family)",
-            color: "var(--sky-500)",
-          }}
+          className="reveal"
+          style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: "#0ea5e9", marginBottom: 16 }}
         >
           Pricing
         </span>
 
         <h2
-          className="reveal font-bold text-center max-w-[600px] mb-4"
+          className="reveal"
           style={{
-            fontFamily: "var(--font-display-family)",
-            color: "var(--ink)",
-            fontSize: "clamp(32px, 5vw, 48px)",
-            letterSpacing: "-0.03em",
-            transitionDelay: "0.1s",
-            lineHeight: 1.1,
+            fontWeight: 700, textAlign: "center", maxWidth: 520,
+            marginBottom: 12,
+            fontSize: "clamp(28px, 4vw, 44px)",
+            letterSpacing: "-0.035em", color: "#0f172a", lineHeight: 1.15,
+            transitionDelay: "0.08s",
           }}
         >
           Pay only for what you use
         </h2>
 
         <p
-          className="reveal text-lg max-w-[500px] text-center mb-12"
+          className="reveal"
           style={{
-            fontFamily: "var(--font-body-family)",
-            color: "var(--ink-muted)",
-            transitionDelay: "0.15s",
-            lineHeight: 1.6,
+            fontSize: 15, maxWidth: 460, textAlign: "center",
+            color: "#64748b", lineHeight: 1.7, marginBottom: 56,
+            transitionDelay: "0.14s",
           }}
         >
-          Roaming around, experimenting, and listening to sample voices are completely free. You only pay when you synthesize speech or clone voices.
+          Browsing voices and testing features are always free. Pay only when you synthesize or clone.
         </p>
 
-        <div className="w-full flex flex-col lg:flex-row gap-6 items-stretch justify-center">
-          {/* Free tier meter card */}
+        {/* ── Main grid: hero card left, rate cards right ── */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 12,
+            width: "100%",
+            maxWidth: 900,
+          }}
+          className="pricing-grid"
+        >
+          {/* Hero "Free to explore" card */}
           <div
-            className="reveal flex-1 max-w-[500px] w-full p-8 lg:p-10 flex flex-col justify-between rounded-[2rem] transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
-            style={{
-              background: "linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.75) 100%)",
-              border: "1px solid rgba(255, 255, 255, 0.8)",
-              backdropFilter: "blur(20px)",
-              boxShadow: "inset 0 1px 1px rgba(255,255,255,0.8), 0 12px 40px rgba(56, 189, 248, 0.08)",
-              transitionDelay: "0.2s",
-            }}
+            className="reveal price-card"
+            style={{ padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: 340, transitionDelay: "0.2s" }}
           >
+            <div className="accent-bar" />
+            <HeroBgSVG />
+
             <div>
-              <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
-                <span
-                  className="text-xl font-semibold tracking-tight"
-                  style={{
-                    fontFamily: "var(--font-display-family)",
-                    color: "var(--ink)",
-                  }}
-                >
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20, flexWrap: "wrap", gap: 10 }}>
+                <span style={{ fontSize: 17, fontWeight: 600, letterSpacing: "-0.02em", color: "#0f172a" }}>
                   Free to explore
                 </span>
-                <span
-                  className="text-[11px] px-3 py-1.5 rounded-full uppercase tracking-wider font-semibold"
-                  style={{
-                    color: "var(--sky-500)",
-                    background: "rgba(56, 189, 248, 0.1)",
-                    border: "1px solid rgba(56, 189, 248, 0.2)",
-                  }}
-                >
-                  always free
+                <span style={{
+                  fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
+                  color: "#0ea5e9", padding: "3px 9px",
+                  border: "1px solid rgba(14,165,233,0.3)", borderRadius: 2,
+                }}>
+                  Always free
                 </span>
               </div>
 
-              <div
-                className="w-full p-4 rounded-xl relative"
-                style={{
-                  background: "rgba(14, 165, 233, 0.05)",
-                  border: "1px solid rgba(14, 165, 233, 0.1)",
-                }}
-              >
-                <div
-                  className="text-[14px] leading-relaxed"
-                  style={{ fontFamily: "var(--font-body-family)", color: "var(--ink)" }}
-                >
-                  <strong>Create an account for free!</strong> No subscriptions, no hidden fees. You can browse voices and test the platform at zero cost.
-                </div>
+              <div style={{
+                padding: "14px 16px", borderRadius: 4,
+                background: "rgba(14,165,233,0.04)",
+                border: "1px solid rgba(14,165,233,0.1)",
+                fontSize: 13.5, color: "#334155", lineHeight: 1.65,
+              }}>
+                <strong style={{ color: "#0f172a" }}>No subscription required.</strong> Create an account, browse all voices, and test the full platform at zero cost.
               </div>
             </div>
 
-            <div
-              className="mt-10 pt-8 flex flex-col gap-2"
-              style={{ borderTop: "1px solid rgba(14, 165, 233, 0.15)" }}
-            >
-              <div className="flex items-baseline gap-2">
-                <span
-                  className="text-5xl font-bold tracking-tighter"
-                  style={{
-                    fontFamily: "var(--font-display-family)",
-                    color: "var(--ink)",
-                  }}
-                >
-                  $0
-                </span>
-                <span className="text-sm font-medium" style={{ color: "var(--ink-muted)" }}>
-                  subscription fee
-                </span>
+            <div style={{ borderTop: "1px solid #e2e8f0", paddingTop: 24, marginTop: 24 }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 6 }}>
+                <span style={{ fontSize: 52, fontWeight: 700, letterSpacing: "-0.04em", color: "#0f172a", lineHeight: 1 }}>$0</span>
+                <span style={{ fontSize: 13, color: "#94a3b8", fontWeight: 500 }}>subscription fee</span>
               </div>
-              <p
-                className="text-[14px] leading-relaxed mt-2"
-                style={{
-                  fontFamily: "var(--font-body-family)",
-                  color: "var(--ink-muted)",
-                }}
-              >
-                Billed securely based on strict usage. Invoiced automatically via Polar.
+              <p style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>
+                Billed securely based on strict usage via Polar.
               </p>
             </div>
           </div>
 
-          {/* Rate cards */}
-          <div className="flex-1 max-w-[500px] w-full flex flex-col gap-4">
-            {usageRates.map((item, index) => {
-              const Icon = item.icon;
+          {/* Rate rows stacked */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {usageRates.map((item, i) => {
+              const Anim = rateIcons[i];
               return (
                 <div
                   key={item.label}
-                  className="reveal flex items-center p-6 gap-5 rounded-3xl transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-                  style={{
-                    background: "linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.75) 100%)",
-                    border: "1px solid rgba(255, 255, 255, 0.8)",
-                    backdropFilter: "blur(20px)",
-                    boxShadow: "inset 0 1px 1px rgba(255,255,255,0.8), 0 8px 30px rgba(56, 189, 248, 0.05)",
-                    transitionDelay: `${0.3 + index * 0.1}s`,
-                  }}
+                  className="reveal rate-row"
+                  style={{ transitionDelay: `${0.26 + i * 0.08}s`, position: "relative" }}
                 >
-            <div className="shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm"
-                 style={{
-                   background: "linear-gradient(135deg, var(--sky-400) 0%, var(--sky-500) 100%)",
-                   border: "1px solid rgba(255,255,255,0.3)",
-                 }}>
-              <Icon size={22} color="white" strokeWidth={2} className="drop-shadow-md" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-baseline justify-between mb-1 gap-2 flex-wrap">
-                <h4
-                  className="font-semibold text-[15px]"
-                  style={{
-                    fontFamily: "var(--font-display-family)",
-                    color: "var(--ink)",
-                  }}
-                >
-                  {item.label}
-                </h4>
-                <div className="flex items-baseline gap-1">
-                  <span
-                    className="font-bold text-lg"
-                    style={{ color: "var(--ink)" }}
-                  >
-                    {item.rate}
-                  </span>
-                  <span
-                    className="text-[12px] font-medium"
-                    style={{ color: "var(--ink-muted)" }}
-                  >
-                    {item.per}
-                  </span>
+                  <div className="accent-bar" />
+                  {/* Animated icon */}
+                  <div style={{ flexShrink: 0, width: 72, height: 72, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <Anim />
+                  </div>
+                  {/* Text */}
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 4, flexWrap: "wrap", gap: 6 }}>
+                      <span style={{ fontSize: 14, fontWeight: 600, color: "#0f172a", letterSpacing: "-0.01em" }}>{item.label}</span>
+                      <span style={{ fontSize: 18, fontWeight: 700, color: "#0ea5e9", letterSpacing: "-0.02em" }}>
+                        {item.rate}
+                        <span style={{ fontSize: 11, color: "#94a3b8", fontWeight: 500, marginLeft: 4 }}>{item.per}</span>
+                      </span>
+                    </div>
+                    <p style={{ fontSize: 12.5, color: "#64748b", lineHeight: 1.5 }}>{item.desc}</p>
+                  </div>
                 </div>
-              </div>
-              <p
-                className="text-[13px] truncate"
-                style={{
-                  fontFamily: "var(--font-body-family)",
-                  color: "var(--ink-muted)",
-                }}
+              );
+            })}
+
+            {/* CTA inline */}
+            <div className="reveal" style={{ transitionDelay: "0.52s", paddingTop: 4 }}>
+              <button
+                className="cta-btn"
+                style={{ width: "100%", justifyContent: "center" }}
+                onClick={() => router.push(isSignedIn ? "/" : "/sign-up")}
               >
-                {item.desc}
+                <span>Start free — no card required</span>
+                <ArrowRight size={16} />
+              </button>
+              <p style={{ textAlign: "center", marginTop: 10, fontSize: 12, color: "#94a3b8" }}>
+                Secure billing via{" "}
+                <a href="https://polar.sh" target="_blank" rel="noopener noreferrer"
+                  style={{ color: "#0ea5e9", fontWeight: 600, textDecoration: "none" }}>
+                  Polar ↗
+                </a>
               </p>
             </div>
           </div>
-              );
-            })}
-          </div>
         </div>
 
-        {/* CTA */}
-        <div
-          className="reveal flex flex-col items-center gap-4 mt-12 w-full"
-          style={{ transitionDelay: "0.6s" }}
-        >
-          <button
-            onClick={() => router.push(isSignedIn ? "/" : "/sign-up")}
-            className="text-white rounded-xl px-10 py-4 text-[16px] font-medium
-                         flex items-center gap-2 group transition-all hover:shadow-[0_8px_30px_rgba(14,165,233,0.3)]"
-            style={{ background: "var(--ink)" }}
-          >
-            <span>Start for free — no card required</span>
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </button>
-
-          <a
-            href="https://polar.sh"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[13px] flex items-center gap-1.5 transition-colors mt-2"
-            style={{ color: "var(--ink-muted)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.color = "var(--ink-muted)")
-            }
-          >
-            <span>Secure billing powered by</span>
-            <span className="font-semibold text-sky-500 hover:text-sky-600 transition-colors">
-              Polar ↗
-            </span>
-          </a>
-        </div>
-      </div>
-    </section>
+        <style>{`
+          @media (max-width: 680px) {
+            .pricing-grid { grid-template-columns: 1fr !important; }
+          }
+        `}</style>
+      </section>
+    </>
   );
 }
