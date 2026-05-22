@@ -26,7 +26,7 @@ Resonance is committed to providing a secure platform for text-to-speech and voi
 If you discover a security vulnerability, please do not open a public issue. Instead, report it privately.
 
 ### Process
-1. Send an email to [security@resonance.ai](mailto:security@resonance.ai) (placeholder).
+1. Send an email to [adrishkarak@gmail.com](mailto:adrishkarak@gmail.com) 
 2. Include a detailed description of the vulnerability.
 3. Provide steps to reproduce the issue.
 4. We will acknowledge your report within 48 hours and work with you to resolve it.
