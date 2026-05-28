@@ -35,12 +35,12 @@ export default function Navbar() {
       >
         {/* Logo + Name */}
         <Link href="/landing" className="flex items-center gap-2">
-          <Image src="/logo.svg" alt="Resonance" width={32} height={32} />
+          <Image src="/logo.svg" alt="Sonic" width={32} height={32} />
           <span
             className="font-bold text-xl tracking-tight"
             style={{ fontFamily: "var(--font-display-family)", color: "var(--ink)" }}
           >
-            Resonance
+            Sonic
           </span>
         </Link>
 

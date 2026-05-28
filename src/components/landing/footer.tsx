@@ -15,7 +15,7 @@ export default function Footer() {
       <div className="max-w-[1000px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         {/* Logo */}
         <Link href="/landing" className="flex items-center gap-2">
-          <Image src="/logo.svg" alt="Resonance" width={24} height={24} />
+          <Image src="/logo.svg" alt="Sonic" width={24} height={24} />
           <span
             className="font-bold text-sm"
             style={{
@@ -23,7 +23,7 @@ export default function Footer() {
               color: "var(--ink)",
             }}
           >
-            Resonance
+            Sonic
           </span>
         </Link>
 
@@ -35,7 +35,7 @@ export default function Footer() {
             color: "var(--ink-muted)",
           }}
         >
-          © {new Date().getFullYear()} Resonance. All rights reserved.
+          © {new Date().getFullYear()} Sonic. All rights reserved.
         </p>
 
         {/* Links */}

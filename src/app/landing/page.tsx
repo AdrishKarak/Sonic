@@ -8,7 +8,7 @@ import Pricing from "@/components/landing/pricing";
 import Footer from "@/components/landing/footer";
 
 export const metadata: Metadata = {
-  title: "Resonance — AI Text-to-Speech & Voice Cloning",
+  title: "Sonic — AI Text-to-Speech & Voice Cloning",
   description:
     "Studio-quality text-to-speech for creators, developers, and teams. Turn any text into natural speech in seconds.",
 };

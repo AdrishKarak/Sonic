@@ -6,7 +6,7 @@ import { prefetch, trpc, HydrateClient } from "@/trpc/server";
 import { VoicesView } from "@/features/voices/views/voices-view";
 import { voicesSearchParamsCache } from "@/features/voices/lib/params";
 
-export const metadata: Metadata = { title: "Voices | Resonance" };
+export const metadata: Metadata = { title: "Voices | Sonic" };
 
 export default async function VoicesPage({
     searchParams,

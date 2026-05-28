@@ -75,14 +75,14 @@ export default function TtsSection() {
               color: "rgba(255, 255, 255, 0.45)",
             }}
           >
-            app.resonance.ai/studio
+            app.sonic.ai/studio
           </div>
         </div>
 
         {/* TTS screenshot */}
         <Image
           src="/TTSpage.jpg"
-          alt="Resonance TTS Studio"
+          alt="Sonic TTS Studio"
           width={900}
           height={560}
           className="w-full h-auto block"

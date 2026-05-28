@@ -134,7 +134,7 @@ export default function Hero() {
           >
             <Image
               src="/Dashboard.jpg"
-              alt="Resonance Dashboard"
+              alt="Sonic Dashboard"
               width={960}
               height={600}
               priority

@@ -29,7 +29,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Resonance",
+  title: "Sonic",
   description: "AI powered text-to-speech and voice cloning Platform",
 };
 
