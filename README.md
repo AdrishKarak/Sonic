@@ -1,6 +1,6 @@
-# Resonance 🎙️
+# SONIC 🎙️
 
-Resonance is a high-performance, AI-powered text-to-speech platform featuring voice cloning and synthesis, built with a serverless-first architecture.
+Sonic is a high-performance, AI-powered text-to-speech platform featuring voice cloning and synthesis, built with a serverless-first architecture.
 
 ## ✨ Features
 
