@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   title: "Sonic — AI Text-to-Speech & Voice Cloning",
   description:
     "Studio-quality text-to-speech for creators, developers, and teams. Turn any text into natural speech in seconds.",
+  openGraph: {
+    title: "Sonic — AI Text-to-Speech & Voice Cloning",
+    description: "Studio-quality text-to-speech for creators, developers, and teams. Turn any text into natural speech in seconds.",
+    url: "/landing",
+  }
 };
 
 export default function LandingPage() {
