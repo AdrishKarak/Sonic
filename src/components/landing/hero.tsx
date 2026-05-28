@@ -133,7 +133,7 @@ export default function Hero() {
             style={{ borderColor: "var(--glass-border)" }}
           >
             <Image
-              src="/Dashboard.jpg"
+              src="/Dashbord.jpeg"
               alt="Sonic Dashboard"
               width={960}
               height={600}

@@ -81,7 +81,7 @@ export default function TtsSection() {
 
         {/* TTS screenshot */}
         <Image
-          src="/TTSpage.jpg"
+          src="/TTSpage.jpeg"
           alt="Sonic TTS Studio"
           width={900}
           height={560}
